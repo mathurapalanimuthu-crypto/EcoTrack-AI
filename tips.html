@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoTrack - Personalized Suggestions</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="tips-page">
+  <header class="topbar">
+  <div class="logo">
+    <i class="fas fa-leaf"></i>
+    <h2> EcoTrack</h2>
+  </div>
+  <nav>
+    <a href="home.html" class="active"><i class="fas fa-home"></i> Home</a>
+    <a href="tracker.html"><i class="fas fa-chart-line"></i> Tracker</a>
+    <a href="tips.html"><i class="fas fa-lightbulb"></i> Suggestion/Tip</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+  </nav>
+</header>
+
+  <div class="container">
+    <h1>Personalized Eco Suggestions 💡</h1>
+    <p>Your daily carbon footprint was: <b id="totalEmission">--</b> kg CO₂</p>
+
+    <div id="suggestions" class="suggestion-box"></div>
+  </div>
+
+  <script>
+    const emissions = JSON.parse(localStorage.getItem("userEmissions")) || {};
+    const total = localStorage.getItem("userTotalEmission") || "--";
+
+    document.getElementById("totalEmission").innerText = total;
+
+    const suggestionsDiv = document.getElementById("suggestions");
+
+    if (!emissions || Object.keys(emissions).length === 0) {
+      suggestionsDiv.innerHTML = "<p>No data found. Please complete the tracker first!</p>";
+    } else {
+      let tips = [];
+
+      // Electricity-based suggestions
+      if (emissions.electricity > 5) {
+        tips.push("🔌 Reduce electricity use: switch off fans, lights & devices when not needed.");
+        tips.push("💡 Try LED bulbs and energy-efficient appliances.");
+      } else {
+        tips.push("✅ Great job keeping electricity usage low!");
+      }
+
+      // Transport-based suggestions
+      if (emissions.transport > 5) {
+        tips.push("🚗 Use carpooling or public transport when possible.");
+        tips.push("🚶‍♀️ Try walking or cycling for short trips.");
+      } else if (emissions.transport > 0) {
+        tips.push("👏 Using eco-friendly transport helps cut CO₂!");
+      }
+
+      // Food-based suggestions
+      if (emissions.food > 4) {
+        tips.push("🍖 Try reducing meat-based meals — they have high carbon impact.");
+      } else if (emissions.food > 2) {
+        tips.push("🥗 Good! Mix more plant-based options for a lighter footprint.");
+      } else {
+        tips.push("🌿 Excellent! A plant-rich diet keeps emissions low.");
+      }
+
+      // Shopping-based suggestions
+      if (emissions.shopping > 5) {
+        tips.push("🛍️ Buy only what you need — overconsumption increases CO₂.");
+        tips.push("♻️ Choose local & sustainable products.");
+      } else {
+        tips.push("💚 Responsible shopping helps the planet!");
+      }
+
+      // Display the tips
+      suggestionsDiv.innerHTML = tips.map(tip => `<div class="tip">${tip}</div>`).join("");
+    }
+  </script>
+</body>
+</html>

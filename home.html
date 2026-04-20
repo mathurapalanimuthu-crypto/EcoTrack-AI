@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoTrack - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="home-page">
+  <header class="topbar">
+  <div class="logo">
+    <i class="fas fa-leaf"></i>
+    <h2> EcoTrack</h2>
+  </div>
+  <nav>
+    <a href="home.html" class="active"><i class="fas fa-home"></i>Home</a>
+    <a href="tracker.html"><i class="fas fa-chart-line"></i> Tracker</a>
+    <a href="tips.html"><i class="fas fa-lightbulb"></i> Suggestion/Tip</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+  </nav>
+</header>
+
+  <div class="container fade-in">
+    <h1 id="greeting"></h1>
+    <p class="quote">"When We Care Together, the Planet Heals and We Breathe Easier 🌍"</p>
+  </div>
+  <!-- 🍃 Floating Leaves on Home -->
+<img class="leaf" style="left:5%; animation-delay:0s;">
+<img class="leaf" style="left:25%; animation-delay:3s;">
+<img class="leaf" style="left:60%; animation-delay:5s;">
+<img class="leaf" style="left:85%; animation-delay:7s;">
+
+  <script>
+    const hour = new Date().getHours();
+    const greeting = document.getElementById("greeting");
+    if (hour < 12) greeting.textContent = "Good Morning 🌻";
+    else if (hour < 18) greeting.textContent = "Good Afternoon 🔆";
+    else greeting.textContent = "Good Evening 🌙";
+  </script>
+</body>
+</html>

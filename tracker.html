@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+ <html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  
+  <title>EcoTrack - Daily Carbon Footprint Tracker</title>  
+  <link rel="stylesheet" href="style.css" />  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>  
+<body class="tracker-page">  
+  <header class="topbar">  
+  <div class="logo">  
+    <i class="fas fa-leaf"></i>  
+    <h2> EcoTrack</h2>  
+  </div>  
+  <nav>  
+    <a href="home.html" class="active"><i class="fas fa-home"></i> Home</a>  
+    <a href="tracker.html"><i class="fas fa-chart-line"></i> Tracker</a>  
+    <a href="tips.html"><i class="fas fa-lightbulb"></i> Suggestion/Tip</a>  
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>  
+  </nav>  
+</header>   
+ <div class="container" style="max-width:700px; margin:auto;">  
+    <h1>Daily Carbon Footprint Tracker</h1> 
+     <!-- Step 0: Electricity Usage -->  
+<div class="question-step active" id="step0">  
+  <div class="question-title">Electricity Usage (kWh/day):</div>  
+  <div class="card-options" id="electricity-group">  
+    <label class="card-option"><input type="radio" name="electricity" value="2"><span class="card-icon">🔌</span><span class="card-label">Less than 2 units/day-Very low</span></label>  
+    <label class="card-option"><input type="radio" name="electricity" value="5"><span class="card-icon">🔌</span><span class="card-label">2-5 units/day-Moderate</span></label>  
+    <label class="card-option"><input type="radio" name="electricity" value="10"><span class="card-icon">🔌</span><span class="card-label">6-10 units/day-High</span></label>  
+    <label class="card-option"><input type="radio" name="electricity" value="10"><span class="card-icon">🔌</span><span class="card-label">11-20 units/day-Very high</span></label>  
+    <label class="card-option"><input type="radio" name="electricity" value="10"><span class="card-icon">🔌</span><span class="card-label">More than 20 units/day-Heavy</span></label>  
+    <label class="card-option">  
+      <input type="radio" name="electricity" value="custom" />  
+      <span class="card-icon">📝</span><span class="card-label">Enter custom amount</span>  
+      <input type="number" min="0" id="electricity-custom" class="card-custom-input" style="display:none" placeholder="kWh/day" />  
+    </label>  
+  </div>  
+  <button type="button" onclick="saveElectricity()">Next</button>  
+</div>  
+
+<!-- Step 1: Transport mode selection -->  
+<div class="question-step" id="step1">  
+  <div class="question-title">Select your main transport mode today:</div>  
+  <div class="card-options" id="vehicle-group">  
+    <label class="card-option"><input type="radio" name="vehicle" value="car"><span class="card-icon">🚗</span><span class="card-label">Car</span></label>  
+    <label class="card-option"><input type="radio" name="vehicle" value="bus"><span class="card-icon">🚌</span><span class="card-label">Bus</span></label>  
+    <label class="card-option"><input type="radio" name="vehicle" value="train"><span class="card-icon">🚆</span><span class="card-label">Train</span></label>  
+    <label class="card-option"><input type="radio" name="vehicle" value="bike"><span class="card-icon">🏍️</span><span class="card-label">Bike</span></label>  
+    <label class="card-option"><input type="radio" name="vehicle" value="bicycle"><span class="card-icon">🚲</span><span class="card-label">Bicycle</span></label>  
+    <label class="card-option"><input type="radio" name="vehicle" value="walk"><span class="card-icon">🚶‍♂️</span><span class="card-label">Walking</span></label>  
+  </div>  
+  <button type="button" onclick="showTransportDistance()">Next</button>  
+</div>  
+
+<!-- Step 2: Enter transport distance -->  
+<div class="question-step" id="step2" style="display:none;">  
+  <div class="question-title" id="distanceTitle"></div>  
+  <input type="number" id="distance" min="0" placeholder="Enter distance (km)" />  
+  <button type="button" onclick="saveTransportDistance()">Next</button>  
+</div>  
+
+<!-- Step 3: Food type selection -->
+
+<div class="question-step" id="step3">  
+  <div class="question-title">Select your food type today:</div>    <div class="card-options" id="food-type-group">  
+    <label class="card-option">  
+      <input type="radio" name="foodtype" value="veg">  
+      <span class="card-icon">🥗</span>  
+      <span class="card-label">Vegetarian</span>  
+    </label>  <label class="card-option">  
+  <input type="radio" name="foodtype" value="nonveg">  
+  <span class="card-icon">🍖</span>  
+  <span class="card-label">Non-Vegetarian</span>  
+</label>  
+
+<label class="card-option">  
+  <input type="radio" name="foodtype" value="vegan">  
+  <span class="card-icon">🌿</span>  
+  <span class="card-label">Vegan</span>  
+</label>
+
+  </div>  <button class="next-btn" type="button" onclick="showFoodAmount()">Next</button>
+
+</div>  
+<!-- Step 4: Food amount input -->  <div class="question-step" id="step4" style="display:none;">  
+  <div class="question-title" id="foodAmountTitle">Approximately how many kilograms of food did you consume today?</div>  
+  <p class="question-subtitle">You can estimate your total meals — 1 average meal ≈ 0.5 kg</p>    <input type="number" id="foodAmount" min="0" step="0.1" placeholder="Enter amount in kg" />  <button class="next-btn" type="button" onclick="saveFoodAmount()">Next</button>
+
+</div>  
+<!-- Step 4: Food amount input -->  
+<div class="question-step" id="step4" style="display:none;">  
+  <div class="question-title" id="foodAmountTitle">How many kg of food did you consume today?</div>  
+  <input type="number" id="foodAmount" min="0" placeholder="Enter in gm" />  
+  <button type="button" onclick="saveFoodAmount()">Next</button>  
+</div>  
+
+<!-- Step 5: Shopping category -->  
+<div class="question-step" id="step5">  
+  <div class="question-title">Select your main shopping category today:</div>  
+  <div class="card-options" id="shopping-group">  
+    <label class="card-option"><input type="radio" name="shoppingtype" value="groceries"><span class="card-icon">🛒</span><span class="card-label">Groceries</span></label>  
+    <label class="card-option"><input type="radio" name="shoppingtype" value="clothes"><span class="card-icon">👚</span><span class="card-label">Clothing</span></label>  
+    <label class="card-option"><input type="radio" name="shoppingtype" value="electronics"><span class="card-icon">📱</span><span class="card-label">Electronics</span></label>  
+  </div>  
+  <button type="button" onclick="showShoppingAmount()">Next</button>  
+</div>  
+
+<!-- Step 6: Shopping spend amount -->  
+<div class="question-step" id="step6" style="display:none;">  
+  <div class="question-title" id="shoppingAmountTitle">How much did you spend on shopping today? (in ₹)</div>  
+  <input type="number" id="shoppingAmountInput" min="0" placeholder="Amount in Rupees (₹)" />  
+  <button type="button" onclick="saveShoppingAmount()">Next</button>  
+</div>  
+
+<!-- Step 7: Time range and calculate -->  
+<div class="question-step" id="step7" style="color:white">  
+  <label>Time Range:</label>  
+  <select id="timeRange">  
+    <option value="daily" selected>Daily</option>  
+    <option value="weekly">Weekly</option>  
+    <option value="monthly">Monthly</option>  
+    <option value="annual">Annual</option>  
+  </select>  
+  <button type="button" onclick="calculate()">Calculate</button>  
+</div>  
+
+ <!-- Final Result Section -->  
+  <h3 id="result" style="text-align:center; margin-top:20px;"></h3>  
+
+<!-- Canvas for the chart -->  
+  <canvas id="footprintChart"></canvas>  
+
+  <!-- Include Chart.js library -->  
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Script files -->    
+   <script src="script.js"></script>  </body>  
+</html>

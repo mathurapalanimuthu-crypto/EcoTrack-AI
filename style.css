@@ -1,0 +1,455 @@
+/* 🌍 Global Styles */
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e8f5e9, #f0fdf4, #e0f7fa);
+  background-size: 400% 400%;
+  animation: bgMove 20s ease infinite;
+  color:#333;
+  overflow-x: hidden;
+  transition: background 0.5s ease;
+}
+
+body.app-page {
+  background-image: url('https://wallpapercave.com/wp/wp2465273.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Background animation */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🌿 Splash Screen */
+#splash {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #e8f5e9, #ffffff);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.app-title {
+  font-size: 70px;
+  color: #2e7d32;
+  text-shadow: 0 0 20px rgba(46,125,50,0.4);
+  animation: textGlow 2s ease-in-out infinite alternate, scaleUp 1s ease-out forwards;
+}
+
+.app-sub {
+  font-size: 20px;
+  color: #388e3c;
+  opacity: 0;
+  animation: fadeIn 2s ease-in 1.2s forwards;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px rgba(46,125,50,0.3); }
+  to { text-shadow: 0 0 30px rgba(46,125,50,0.8); }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.fade-out { animation: fadeOut 0.8s forwards; }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+.hidden { display: none; }
+
+/* 💡 Login & Auth Card */
+.auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 350px;
+  margin: 120px auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeSlideUp 1.5s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+input, select, button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #256028;
+  transform: translateY(-2px);
+}
+
+/* 🌿 Navigation Bar */
+.topbar {
+  background: #2e7d32;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+nav a {
+  color:white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+nav a:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* ✨ Page Layout */
+.container {
+  padding: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadePageIn 1.2s ease forwards;
+}
+
+@keyframes fadePageIn {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 🌎 Quote Section */
+.quote {
+  font-style: italic;
+  font-size: 1.3em;
+  color:lightgray;
+  text-align: center;
+  margin-top: 30px;
+  animation: fadeIn 2s ease;
+}
+
+/* 🌱 Tracker Styles */
+.container.tracker {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 25px;
+  box-shadow: 0 6px 24px rgba(30,56,99,.07);
+  padding: 36px;
+  animation: fadeIn 1.2s ease;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.question-step {
+  display: none;
+  margin-bottom: 25px;
+}
+
+.question-step.active {
+  display: block;
+}
+
+.question-title {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: lightgray;
+  font-weight: 600;
+}
+
+/* 🪴 Options */
+.card-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-option {
+  display: flex;
+  align-items: center;
+  background: #f2f8f6;
+  border-radius: 15px;
+  padding: 14px 18px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.18s, background 0.18s, transform 0.2s ease;
+}
+
+.card-option:hover {
+  border-color: #58b09c;
+  background: #e1f5ee;
+  transform: scale(1.02);
+}
+
+.card-option input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-right: 14px;
+  border-radius: 50%;
+  border: 2px solid #b1cfcb;
+  position: relative;
+}
+
+.card-option input[type="radio"]:checked::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: #184d47;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+}
+
+.card-icon {
+  font-size: 1.4rem;
+  margin-right: 10px;
+  transition: color 0.15s;
+}
+
+.card-label {
+  flex: 1;
+  font-size: 1rem;
+}
+
+.card-custom-input {
+  margin-left: 14px;
+  width: 90px;
+  border-radius: 8px;
+  border: 1px solid #58b09c;
+  padding: 5px 6px;
+  font-size: 0.97rem;
+}
+
+/* 📊 Chart Style */
+canvas {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 0 15px rgba(0,255,136,0.25);
+  transition: transform 0.3s ease;
+}
+
+canvas:hover {
+  transform: scale(1.02);
+}
+
+/* 💡 Suggestions Box */
+.suggestion-box {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(255,255,255,0.8);
+  border-radius: 15px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 1.5s ease;
+}
+
+.tip {
+  background: #e6f7ea;
+  border-left: 6px solid #4CAF50;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.tip:hover {
+  background: #d9f6e0;
+}
+
+/* 🪴 Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+  .app-title {
+    font-size: 50px;
+  }
+  .card-option {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* 🌿 Enhanced Navigation Bar with Icons */
+.topbar {
+  background: linear-gradient(90deg, #2e7d32, #43a047);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 28px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.topbar .logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #a5d6a7;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  transform: translateY(-2px);
+  color: #c8e6c9;
+}
+
+nav a.active {
+  color: #a5d6a7;
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  nav {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  nav a {
+    font-size: 1rem;
+  }
+}
+/* Chart container styling */
+#footprintChart {
+  max-width: 600px;
+  height: 400px;
+  margin: 20px auto;
+  display: none; /* hidden until result is ready */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: opacity 0.8s ease; /* smooth fade-in */
+  opacity: 0;
+}
+/* 🌄 Page-Specific Backgrounds */
+
+body.login-page {
+  background-image: url('https://i.pinimg.com/1200x/e4/77/74/e47774125f94bac3f80e275bdbebf608.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.home-page {
+  background-image: url('https://i.pinimg.com/1200x/40/2a/1a/402a1adb1e8087542b704755078ae32c.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.tracker-page {
+  background-image: url('https://i.pinimg.com/1200x/a2/e6/36/a2e636b812822c4186de43b74de188aa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.tips-page {
+  background-image: url('https://i.pinimg.com/736x/bf/28/9b/bf289b347ea12f59ad1a28bd289db98c.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.about-page {
+  background-image: url('https://i.pinimg.com/736x/70/42/e9/7042e99da611c8dab433bc41eef14df6.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 🍃 Floating Leaves Animation */
+.leaf {
+  position: absolute;
+  top: -50px;
+  width: 40px;
+  height: 40px;
+  background: url('https://cdn-icons-png.flaticon.com/128/5725/5725105.png') no-repeat center;
+  background-size: contain;
+  animation: fall 12s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+.container{
+  p{
+    color:whitesmoke;
+  }
+}
